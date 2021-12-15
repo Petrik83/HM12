@@ -5,10 +5,13 @@
 //  Created by Александр Петрович on 15.12.2021.
 //
 
+
+// доделать подписи к секциям
+
 import UIKit
 let idCell = "TableViewSell"
 var defaultDetailData = [0: ["Apple ID, iCloud, контент и покупки"],
-                         1: ["", "Выкл.", "Вкл.", "", "", "Не подключено"]]
+                         1: ["", "Вкл.", "Выкл.", "", "", "Не подключено"]]
 
 class ViewController: UIViewController {
     var data = [0: ["Александр Петрович"],
@@ -100,11 +103,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let image = self.data[indexPath.section]?[indexPath.row]
         
         
-        cell?.imageView?.image = UIImage(named: image ?? "")
         
+        cell?.imageView?.image = UIImage(named: image ?? "")
         cell?.textLabel?.text = self.data[indexPath.section]?[indexPath.row]
         cell?.detailTextLabel?.text = defaultDetailData[indexPath.section]?[indexPath.row]
-        
+        cell?.imageView?.image = UIImage(named: image ?? "")
+
         
         return cell!
         
@@ -130,8 +134,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch [indexPath.section, indexPath.row] {
         case [1, 1]:
-            print("0")
+           
             navigationController?.pushViewController(WiFiSettingsViewController(), animated: true)
+        case [1, 2]:
+           
+            navigationController?.pushViewController(BluetothSettingsViewController(), animated: true)
 
         default:
             print("d")
