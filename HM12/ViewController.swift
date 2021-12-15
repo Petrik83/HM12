@@ -11,8 +11,6 @@ var defaultDetailData = [0: ["Apple ID, iCloud, контент и покупки
                          1: ["", "Выкл.", "Вкл.", "", "", "Не подключено"]]
 
 class ViewController: UIViewController {
-    
-    
     var data = [0: ["Александр Петрович"],
                 1: ["Авиарежим", "Wi-Fi", "Bluetooth", "Сотовая связь", "Режим модема", "VPN"],
                 2: ["Уведомления", "Звуки, тактильные сигналы", "Фокусирование", "Экранное время"],
@@ -37,8 +35,11 @@ class ViewController: UIViewController {
         let search = UISearchController(searchResultsController: nil)
         search.searchResultsUpdater = self
         self.navigationItem.searchController = search
-        
-        
+        }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     private func viewHierarchy() {
