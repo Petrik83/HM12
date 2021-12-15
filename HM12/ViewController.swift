@@ -25,6 +25,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Настройки"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor = .systemGray6
         viewHierarchy()
         setupLayout()
 
