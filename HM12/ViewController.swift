@@ -7,6 +7,7 @@
 
 
 // доделать подписи к секциям
+// появляются свичи в произвольном месте
 
 import UIKit
 let idCell = "TableViewSell"
@@ -97,6 +98,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                     cell?.accessoryType = .disclosureIndicator
                 } else {
                     cell?.accessoryType = .disclosureIndicator
+                    cell?.accessoryView = .none
                 }
             }
         }
@@ -107,7 +109,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         cell?.imageView?.image = UIImage(named: image ?? "")
         cell?.textLabel?.text = self.data[indexPath.section]?[indexPath.row]
         cell?.detailTextLabel?.text = defaultDetailData[indexPath.section]?[indexPath.row]
-        cell?.imageView?.image = UIImage(named: image ?? "")
 
         
         return cell!
@@ -139,6 +140,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         case [1, 2]:
            
             navigationController?.pushViewController(BluetothSettingsViewController(), animated: true)
+        case [1, 3]:
+           
+            navigationController?.pushViewController(BluetothSettingsViewController(), animated: true)
+
 
         default:
             print("d")

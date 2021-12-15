@@ -7,11 +7,13 @@
 
 import UIKit
 var wiFiSettingsData = [0: ["Wi-Fi"]]
+let wiFiOnSettingsData = [0: ["Wi-Fi"],
+                          1: ["macWiFi", "avia8-1 net", "free Wi-Fi"]]
 
 class WiFiSettingsViewController: UIViewController {
     let wiFiSwitch = UISwitch()
     
-    lazy var tableView1: UITableView = {
+    lazy var wiFitableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.backgroundColor = .systemGray6
         
@@ -27,6 +29,9 @@ class WiFiSettingsViewController: UIViewController {
         view.backgroundColor = .systemGray6
         viewHierarchy()
         setupLayout()
+        if defaultDetailData[1]?[1] == "Вкл." {
+            wiFiSettingsData = wiFiOnSettingsData
+        }
     }
     
     
@@ -40,15 +45,15 @@ class WiFiSettingsViewController: UIViewController {
     }
     
     private func viewHierarchy() {
-        view.addSubview(tableView1)
+        view.addSubview(wiFitableView)
     }
     
     private func setupLayout() {
-        tableView1.translatesAutoresizingMaskIntoConstraints = false
-        tableView1.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        tableView1.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        tableView1.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        tableView1.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        wiFitableView.translatesAutoresizingMaskIntoConstraints = false
+        wiFitableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        wiFitableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        wiFitableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        wiFitableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
 }
 
@@ -98,7 +103,7 @@ extension WiFiSettingsViewController: UITableViewDataSource, UITableViewDelegate
                 wiFiSettingsData[indexPath.section]?.remove(at: indexPath.row)
                 wiFiSettingsData[0]?.append(temp ?? "")
                 defaultDetailData[1]?[1] = temp ?? ""
-                tableView1.reloadData()
+                wiFitableView.reloadData()
                 
             } else {
                 if indexPath.section != 0 {
@@ -107,7 +112,7 @@ extension WiFiSettingsViewController: UITableViewDataSource, UITableViewDelegate
                     wiFiSettingsData[0]?.remove(at: 1)
                     wiFiSettingsData[indexPath.section]?.remove(at: indexPath.row)
                     wiFiSettingsData[0]?.append(temp ?? "")
-                    tableView1.reloadData()
+                    wiFitableView.reloadData()
                     defaultDetailData[1]?[1] = temp ?? ""
                     
                 }
@@ -121,13 +126,13 @@ extension WiFiSettingsViewController: UITableViewDataSource, UITableViewDelegate
             wiFiSettingsData = [0: ["Wi-Fi"]]
             defaultDetailData[1]?[1] = "Выкл."
             wiFiSwitch.setOn(false, animated: true)
-            tableView1.reloadData()
+            wiFitableView.reloadData()
         } else {
             
             wiFiSettingsData = [0: ["Wi-Fi"],
                                 1: ["macWiFi", "avia8-1 net", "free Wi-Fi"]]
             defaultDetailData[1]?[1] = "Вкл."
-            tableView1.reloadData()
+            wiFitableView.reloadData()
             wiFiSwitch.setOn(true, animated: true)
         }
     }

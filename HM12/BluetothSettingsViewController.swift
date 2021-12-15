@@ -9,9 +9,10 @@ import UIKit
 var bluetoothSettingsData = [0: ["Bluetooth"]]
 let bluetoothOnSettingsData = [0: ["Bluetooth"],
                     1: ["Apple whatch", "Airpods"]]
-var bluetoothSettingsSubTitleData = [0: [""],
-                                     1: ["Не подключено", "Не подключено"]]
-let bluetoothOffSettingsSubTitleData = bluetoothSettingsSubTitleData
+let bluetoothOffSettingsSubTitleData = [0: [""],
+                                        1: ["Не подключено", "Не подключено"]]
+var bluetoothSettingsSubTitleData = bluetoothOffSettingsSubTitleData
+
 class BluetothSettingsViewController: UIViewController {
     
     let bluetoothSwitch = UISwitch()
