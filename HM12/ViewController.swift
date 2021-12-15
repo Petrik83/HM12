@@ -14,6 +14,8 @@ class ViewController: UIViewController {
                 1: ["Авиарежим", "Wi-Fi", "Bluetooth", "Сотовая связь", "Режим модема", "VPN"],
                 2: ["Уведомления", "Звуки, тактильные сигналы", "Фокусирование", "экранное время"],
                 3: ["Основные", "Пункт управления", "Экран и яркость", "Экран 'Домой'"]]
+    var defaultDetailData = [0: ["Apple ID, iCloud, контент и покупки"],
+                        1: ["", "Выкл.", "Вкл.", "", "", "Не подключено"]]
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -72,12 +74,37 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 cell = UITableViewCell(style: .default, reuseIdentifier: idCell)
             }
 
+            if indexPath.section == 0 {
+                cell = UITableViewCell(style: .subtitle, reuseIdentifier: idCell)
+                cell?.accessoryType = .disclosureIndicator
+            } else {
+                if indexPath.section == 1 && indexPath.row == 0 {
+                    cell = UITableViewCell(style: .default, reuseIdentifier: idCell)
+                    let aviaModeSwitch = UISwitch()
+                    aviaModeSwitch.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
+                    aviaModeSwitch.setOn(false, animated: true)
+                    cell!.accessoryView = aviaModeSwitch
+                    cell?.selectionStyle = .none
+                } else {
+                    if indexPath.section == 1 && (indexPath.row != 0) {
+                        cell = UITableViewCell(style: .value1, reuseIdentifier: idCell)
+                        cell?.accessoryType = .disclosureIndicator
+                    } else {
+                        cell?.accessoryType = .disclosureIndicator
+                    }
+                }
+            }
+
             cell?.textLabel?.text = self.data[indexPath.section]?[indexPath.row]
+            cell?.detailTextLabel?.text = defaultDetailData[indexPath.section]?[indexPath.row]
             
          
             return cell!
             
         }
+    @objc func switchChanged(_ sender : UISwitch!){
+        print("switchChange")
+            }
 }
 
 extension ViewController: UISearchResultsUpdating {
