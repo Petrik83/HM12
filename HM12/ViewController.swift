@@ -7,6 +7,9 @@
 
 import UIKit
 let idCell = "TableViewSell"
+var defaultDetailData = [0: ["Apple ID, iCloud, контент и покупки"],
+                         1: ["", "Выкл.", "Вкл.", "", "", "Не подключено"]]
+
 class ViewController: UIViewController {
     
     
@@ -14,8 +17,7 @@ class ViewController: UIViewController {
                 1: ["Авиарежим", "Wi-Fi", "Bluetooth", "Сотовая связь", "Режим модема", "VPN"],
                 2: ["Уведомления", "Звуки, тактильные сигналы", "Фокусирование", "Экранное время"],
                 3: ["Основные", "Пункт управления", "Экран и яркость", "Экран 'Домой'"]]
-    var defaultDetailData = [0: ["Apple ID, iCloud, контент и покупки"],
-                             1: ["", "Выкл.", "Вкл.", "", "", "Не подключено"]]
+    
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -121,6 +123,17 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             tableView.cellForRow(at: IndexPath(row: 4, section: 1))?.detailTextLabel?.text = defaultDetailData[1]?[4]
             tableView.cellForRow(at: IndexPath(row: 5, section: 1))?.detailTextLabel?.text =  defaultDetailData[1]?[5]
             
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch [indexPath.section, indexPath.row] {
+        case [1, 1]:
+            print("0")
+            navigationController?.pushViewController(WiFiSettingsViewController(), animated: true)
+
+        default:
+            print("d")
         }
     }
 }
