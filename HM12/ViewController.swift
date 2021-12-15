@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     var data = [0: ["Александр Петрович"],
                 1: ["Авиарежим", "Wi-Fi", "Bluetooth", "Сотовая связь", "Режим модема", "VPN"],
-                2: ["Уведомления", "Звуки, тактильные сигналы", "Фокусирование", "экранное время"],
+                2: ["Уведомления", "Звуки, тактильные сигналы", "Фокусирование", "Экранное время"],
                 3: ["Основные", "Пункт управления", "Экран и яркость", "Экран 'Домой'"]]
     var defaultDetailData = [0: ["Apple ID, iCloud, контент и покупки"],
                         1: ["", "Выкл.", "Вкл.", "", "", "Не подключено"]]
@@ -94,7 +94,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                     }
                 }
             }
-
+            let image = self.data[indexPath.section]?[indexPath.row]
+                
+            
+            cell?.imageView?.image = UIImage(named: image ?? "")
+                                             
             cell?.textLabel?.text = self.data[indexPath.section]?[indexPath.row]
             cell?.detailTextLabel?.text = defaultDetailData[indexPath.section]?[indexPath.row]
             
