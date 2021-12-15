@@ -30,6 +30,10 @@ class ViewController: UIViewController {
         view.backgroundColor = .systemGray6
         viewHierarchy()
         setupLayout()
+        let search = UISearchController(searchResultsController: nil)
+        search.searchResultsUpdater = self
+        self.navigationItem.searchController = search
+        
 
     }
 
@@ -76,3 +80,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         }
 }
 
+extension ViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        print(searchController.searchBar.text ?? "")
+    }
+    
+    
+}
