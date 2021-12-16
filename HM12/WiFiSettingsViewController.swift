@@ -93,6 +93,13 @@ extension WiFiSettingsViewController: UITableViewDataSource, UITableViewDelegate
         return cell
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section != 0 {
+            return "МОИ СЕТИ"
+        }
+        return nil
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch [indexPath.section, indexPath.row] {
         case [0, 0]:

@@ -94,6 +94,23 @@ extension BluetothSettingsViewController: UITableViewDataSource, UITableViewDele
         return cell
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section != 0 {
+            return "МОИ УСТРОЙСТВА"
+        }
+        return nil
+    }
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if section == 0 && bluetoothSwitch.isOn {
+            return "Имя при обнаружении \"iPhone 12\""
+        } else {
+            if section == 0 && !bluetoothSwitch.isOn {
+                return "AirDrop, AirPlay, локатор, службы геолокации и разблокировка с apple Watch используют Bluetooth"
+            }
+        }
+        return nil
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch [indexPath.section, indexPath.row] {
         case [0, 0]:
