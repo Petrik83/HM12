@@ -7,7 +7,6 @@
 
 
 // доделать подписи к секциям
-// появляются свичи в произвольном месте
 
 import UIKit
 let idCell = "TableViewSell"
@@ -140,14 +139,13 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         case [1, 2]:
            
             navigationController?.pushViewController(BluetothSettingsViewController(), animated: true)
-        case [1, 3]:
-           
-            navigationController?.pushViewController(BluetothSettingsViewController(), animated: true)
+        
 
 
         default:
-            print("d")
+            print("Нажата клавиша \(data[indexPath.section]![indexPath.row])")
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
