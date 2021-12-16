@@ -8,9 +8,11 @@
 import UIKit
 var bluetoothSettingsData = [0: ["Bluetooth"]]
 let bluetoothOnSettingsData = [0: ["Bluetooth"],
-                    1: ["Apple whatch", "Airpods"]]
+                               1: ["Apple whatch", "Airpods"]]
+
 let bluetoothOffSettingsSubTitleData = [0: [""],
                                         1: ["Не подключено", "Не подключено"]]
+
 var bluetoothSettingsSubTitleData = bluetoothOffSettingsSubTitleData
 
 class BluetothSettingsViewController: UIViewController {
@@ -22,7 +24,6 @@ class BluetothSettingsViewController: UIViewController {
         tableView.backgroundColor = .systemGray6
         tableView.dataSource = self
         tableView.delegate = self
-        
         return tableView
     }()
     
@@ -38,11 +39,9 @@ class BluetothSettingsViewController: UIViewController {
         }
     }
     
-    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
     }
-    
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -70,11 +69,11 @@ extension BluetothSettingsViewController: UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return bluetoothSettingsData[section]?.count ?? 0
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: idCell)
         
         if indexPath.section == 0 && indexPath.row == 0 {
-            
             bluetoothSwitch.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
             if defaultDetailData[1]?[2] == "Выкл." {
                 bluetoothSwitch.setOn(false, animated: true)
@@ -84,9 +83,7 @@ extension BluetothSettingsViewController: UITableViewDataSource, UITableViewDele
             cell.accessoryView = bluetoothSwitch
             cell.selectionStyle = .none
         } else {
-            
-                cell.accessoryType = .detailButton
-       
+            cell.accessoryType = .detailButton
         }
         
         cell.textLabel?.text = bluetoothSettingsData[indexPath.section]?[indexPath.row]
@@ -100,6 +97,7 @@ extension BluetothSettingsViewController: UITableViewDataSource, UITableViewDele
         }
         return nil
     }
+    
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == 0 && bluetoothSwitch.isOn {
             return "Имя при обнаружении \"iPhone 12\""
@@ -118,7 +116,6 @@ extension BluetothSettingsViewController: UITableViewDataSource, UITableViewDele
         default:
             bluetoothSettingsSubTitleData[indexPath.section]?[indexPath.row] = "Подключено"
             bluetoothTableView.reloadData()
-            
         }
     }
     
@@ -129,9 +126,7 @@ extension BluetothSettingsViewController: UITableViewDataSource, UITableViewDele
             bluetoothSwitch.setOn(false, animated: true)
             bluetoothSettingsSubTitleData = bluetoothOffSettingsSubTitleData
             bluetoothTableView.reloadData()
-
         } else {
-            
             bluetoothSettingsData = bluetoothOnSettingsData
             defaultDetailData[1]?[2] = "Вкл."
             bluetoothSwitch.setOn(true, animated: true)
