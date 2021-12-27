@@ -15,6 +15,7 @@
 		6D25E147276A14160091A5D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D25E145276A14160091A5D9 /* LaunchScreen.storyboard */; };
 		6D25E14F276A37960091A5D9 /* WiFiSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D25E14E276A37960091A5D9 /* WiFiSettingsViewController.swift */; };
 		6D25E153276A46D50091A5D9 /* BluetothSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D25E152276A46D50091A5D9 /* BluetothSettingsViewController.swift */; };
+		6DF8A0CF277A364D005236C5 /* SettingSellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF8A0CE277A364D005236C5 /* SettingSellModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		6D25E148276A14160091A5D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D25E14E276A37960091A5D9 /* WiFiSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiSettingsViewController.swift; sourceTree = "<group>"; };
 		6D25E152276A46D50091A5D9 /* BluetothSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetothSettingsViewController.swift; sourceTree = "<group>"; };
+		6DF8A0CE277A364D005236C5 /* SettingSellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSellModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 		6DF8A0CD277A3594005236C5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6DF8A0CE277A364D005236C5 /* SettingSellModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 			files = (
 				6D25E14F276A37960091A5D9 /* WiFiSettingsViewController.swift in Sources */,
 				6D25E153276A46D50091A5D9 /* BluetothSettingsViewController.swift in Sources */,
+				6DF8A0CF277A364D005236C5 /* SettingSellModel.swift in Sources */,
 				6D25E13F276A14160091A5D9 /* ViewController.swift in Sources */,
 				6D25E13B276A14160091A5D9 /* AppDelegate.swift in Sources */,
 				6D25E13D276A14160091A5D9 /* SceneDelegate.swift in Sources */,
