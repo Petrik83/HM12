@@ -60,17 +60,73 @@
 		6D25E139276A14160091A5D9 /* HM12 */ = {
 			isa = PBXGroup;
 			children = (
-				6D25E13A276A14160091A5D9 /* AppDelegate.swift */,
-				6D25E13C276A14160091A5D9 /* SceneDelegate.swift */,
+				6DF8A0C6277A3188005236C5 /* Resurses */,
+				6DF8A0CA277A34EC005236C5 /* Sourses */,
+			);
+			path = HM12;
+			sourceTree = "<group>";
+		};
+		6DF8A0C6277A3188005236C5 /* Resurses */ = {
+			isa = PBXGroup;
+			children = (
+				6DF8A0C7277A319B005236C5 /* Configs */,
+				6DF8A0C8277A31A9005236C5 /* Storyboards */,
+				6D25E143276A14160091A5D9 /* Assets.xcassets */,
+			);
+			path = Resurses;
+			sourceTree = "<group>";
+		};
+		6DF8A0C7277A319B005236C5 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				6D25E148276A14160091A5D9 /* Info.plist */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
+		6DF8A0C8277A31A9005236C5 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				6D25E140276A14160091A5D9 /* Main.storyboard */,
+				6D25E145276A14160091A5D9 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		6DF8A0CA277A34EC005236C5 /* Sourses */ = {
+			isa = PBXGroup;
+			children = (
+				6DF8A0CC277A351A005236C5 /* App */,
+				6DF8A0CB277A3508005236C5 /* Scenes */,
+				6DF8A0CD277A3594005236C5 /* Models */,
+			);
+			path = Sourses;
+			sourceTree = "<group>";
+		};
+		6DF8A0CB277A3508005236C5 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
 				6D25E13E276A14160091A5D9 /* ViewController.swift */,
 				6D25E14E276A37960091A5D9 /* WiFiSettingsViewController.swift */,
 				6D25E152276A46D50091A5D9 /* BluetothSettingsViewController.swift */,
-				6D25E140276A14160091A5D9 /* Main.storyboard */,
-				6D25E143276A14160091A5D9 /* Assets.xcassets */,
-				6D25E145276A14160091A5D9 /* LaunchScreen.storyboard */,
-				6D25E148276A14160091A5D9 /* Info.plist */,
 			);
-			path = HM12;
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		6DF8A0CC277A351A005236C5 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				6D25E13A276A14160091A5D9 /* AppDelegate.swift */,
+				6D25E13C276A14160091A5D9 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		6DF8A0CD277A3594005236C5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,7 +355,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZB4T6SD8SN;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HM12/Info.plist;
+				INFOPLIST_FILE = HM12/Resurses/Configs/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -327,7 +383,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZB4T6SD8SN;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HM12/Info.plist;
+				INFOPLIST_FILE = HM12/Resurses/Configs/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
