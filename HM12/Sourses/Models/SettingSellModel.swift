@@ -12,6 +12,7 @@ struct SettingCell {
     enum CellAccecoryType {
         case switchCell
         case disclosureIndicator
+        case detailButton
     }
 
     enum CellStyle {
@@ -26,17 +27,17 @@ struct SettingCell {
 }
 
 struct Section {
-    let title: Int
+    let title: String
     let options: [SettingCell]
 }
 
 extension Section {
     static func getData() -> [Section] {
         return [
-            Section(title: 0, options: [
+            Section(title: "", options: [
                 SettingCell(icon: UIImage(named: "Александр Петрович"), title: "Александр Петрович", style: .subtitle, detailTextLabel: "Apple ID, iCloud, контент и покупки", type: .disclosureIndicator)
             ]),
-            Section(title: 1, options: [
+            Section(title: "", options: [
                 SettingCell(icon: UIImage(named: "Авиарежим"), title: "Авиарежим", style: .default, detailTextLabel: nil, type: .switchCell),
                 SettingCell(icon: UIImage(named: "Wi-Fi"), title: "Wi-Fi", style: .value1, detailTextLabel: "Вкл.", type: .disclosureIndicator),
                 SettingCell(icon: UIImage(named: "Bluetooth"), title: "Bluetooth", style: .value1, detailTextLabel: "Выкл.", type: .disclosureIndicator),
@@ -44,13 +45,13 @@ extension Section {
                 SettingCell(icon: UIImage(named: "Режим модема"), title: "Режим модема", style: .value1, detailTextLabel: "", type: .disclosureIndicator),
                 SettingCell(icon: UIImage(named: "VPN"), title: "VPN", style: .value1, detailTextLabel: "Не подключено", type: .disclosureIndicator)
             ]),
-            Section(title: 2, options: [
+            Section(title: "", options: [
                 SettingCell(icon: UIImage(named: "Уведомления"), title: "Уведомления", style: .default, detailTextLabel: nil, type: .disclosureIndicator),
                 SettingCell(icon: UIImage(named: "Звуки, тактильные сигналы"), title: "Звуки, тактильные сигналы", style: .default, detailTextLabel: nil, type: .disclosureIndicator),
                 SettingCell(icon: UIImage(named: "Фокусирование"), title: "Фокусирование", style: .default, detailTextLabel: nil, type: .disclosureIndicator),
                 SettingCell(icon: UIImage(named: "Экранное время"), title: "Экранное время", style: .default, detailTextLabel: nil, type: .disclosureIndicator)
             ]),
-            Section(title: 3, options: [
+            Section(title: "", options: [
                 SettingCell(icon: UIImage(named: "Основные"), title: "Основные", style: .default, detailTextLabel: nil, type: .disclosureIndicator),
                 SettingCell(icon: UIImage(named: "Пункт управления"), title: "Пункт управления", style: .default, detailTextLabel: nil, type: .disclosureIndicator),
                 SettingCell(icon: UIImage(named: "Экран и яркость"), title: "Экран и яркость", style: .default, detailTextLabel: nil, type: .disclosureIndicator),

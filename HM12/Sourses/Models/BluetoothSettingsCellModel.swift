@@ -6,3 +6,17 @@
 //
 
 import UIKit
+
+extension Section {
+    static func getBluetoothData() -> [Section] {
+        return [
+            Section(title: "", options: [
+                SettingCell(icon: UIImage(named: "Bluetooth"), title: "Bluetooth", style: .value1, detailTextLabel: nil, type: .switchCell)
+            ]),
+            Section(title: "МОИ УСТРОЙСТВА", options: [
+                SettingCell(icon: UIImage(named: "Apple whatch"), title: "Apple whatch", style: .value1, detailTextLabel: nil, type: .detailButton),
+                SettingCell(icon: UIImage(named: "Airpods"), title: "Airpods", style: .value1, detailTextLabel: nil, type: .detailButton)
+            ])
+        ]
+    }
+}
