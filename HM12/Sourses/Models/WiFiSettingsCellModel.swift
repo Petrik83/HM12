@@ -8,7 +8,7 @@
 import UIKit
 
 extension Section {
-    static func getWiFiData() -> [Section] {
+    static func getWiFiOnData() -> [Section] {
         return [
             Section(title: "", options: [
                 SettingCell(icon: UIImage(named: "Wi-Fi"), title: "Wi-Fi", style: .default, detailTextLabel: nil, type: .switchCell)
@@ -19,5 +19,11 @@ extension Section {
                 SettingCell(icon: UIImage(named: "free Wi-Fi"), title: "free Wi-Fi", style: .default, detailTextLabel: nil, type: .detailButton)
             ])
         ]
+    }
+    static func getWiFiData() -> [Section] {
+        return [
+            Section(title: "", options: [
+                SettingCell(icon: UIImage(named: "Wi-Fi"), title: "Wi-Fi", style: .default, detailTextLabel: nil, type: .switchCell)
+            ])]
     }
 }
