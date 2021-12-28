@@ -30,7 +30,7 @@ struct SettingCell {
 
 struct Section {
     let title: String
-    let options: [SettingCell]
+    var options: [SettingCell]
 }
 
 extension Section {

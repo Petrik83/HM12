@@ -28,7 +28,7 @@ class WiFiSettingsViewController: UIViewController {
         view.backgroundColor = .systemGray6
         viewHierarchy()
         setupLayout()
-        if defaultDetailData[1]?[1] == "Вкл." {
+        if settingModel[1].options[1].detailTextLabel == "Вкл." {
             wiFiSettingsData = wiFiOnSettingsData
         }
     }
@@ -69,7 +69,7 @@ extension WiFiSettingsViewController: UITableViewDataSource, UITableViewDelegate
         
         if indexPath.section == 0 && indexPath.row == 0 {
             wiFiSwitch.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
-            if defaultDetailData[1]?[1] == "Выкл." {
+            if settingModel[1].options[1].detailTextLabel == "Выкл." {
                 wiFiSwitch.setOn(false, animated: true)
             } else {
                 wiFiSwitch.setOn(true, animated: true)
@@ -105,7 +105,7 @@ extension WiFiSettingsViewController: UITableViewDataSource, UITableViewDelegate
             if wiFiSettingsData[0]?.count == 1 {
                 wiFiSettingsData[indexPath.section]?.remove(at: indexPath.row)
                 wiFiSettingsData[0]?.append(temp ?? "")
-                defaultDetailData[1]?[1] = temp ?? ""
+                settingModel[1].options[1].detailTextLabel = temp ?? ""
                 wiFitableView.reloadData()
             } else {
                 if indexPath.section != 0 {
@@ -115,7 +115,7 @@ extension WiFiSettingsViewController: UITableViewDataSource, UITableViewDelegate
                     wiFiSettingsData[indexPath.section]?.remove(at: indexPath.row)
                     wiFiSettingsData[0]?.append(temp ?? "")
                     wiFitableView.reloadData()
-                    defaultDetailData[1]?[1] = temp ?? ""
+                    settingModel[1].options[1].detailTextLabel = temp ?? ""
                 }
             }
         }
@@ -124,12 +124,12 @@ extension WiFiSettingsViewController: UITableViewDataSource, UITableViewDelegate
     @objc func switchChanged(_ sender : UISwitch!) {
         if !sender.isOn {
             wiFiSettingsData = [0: ["Wi-Fi"]]
-            defaultDetailData[1]?[1] = "Выкл."
+            settingModel[1].options[1].detailTextLabel = "Выкл."
             wiFiSwitch.setOn(false, animated: true)
             wiFitableView.reloadData()
         } else {
             wiFiSettingsData = wiFiOnSettingsData
-            defaultDetailData[1]?[1] = "Вкл."
+            settingModel[1].options[1].detailTextLabel = "Вкл."
             wiFitableView.reloadData()
             wiFiSwitch.setOn(true, animated: true)
         }

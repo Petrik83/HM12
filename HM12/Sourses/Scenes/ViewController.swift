@@ -7,14 +7,14 @@
 
 import UIKit
 let idCell = "TableViewSell"
-var defaultDetailData = [0: ["Apple ID, iCloud, контент и покупки"],
-                         1: ["", "Вкл.", "Выкл.", "", "", "Не подключено"]]
+//var defaultDetailData = [0: ["Apple ID, iCloud, контент и покупки"],
+//                         1: ["", "Вкл.", "Выкл.", "", "", "Не подключено"]]
 
 class ViewController: UIViewController {
-//    var data = [0: ["Александр Петрович"],
-//                1: ["Авиарежим", "Wi-Fi", "Bluetooth", "Сотовая связь", "Режим модема", "VPN"],
-//                2: ["Уведомления", "Звуки, тактильные сигналы", "Фокусирование", "Экранное время"],
-//                3: ["Основные", "Пункт управления", "Экран и яркость", "Экран 'Домой'"]]
+    //    var data = [0: ["Александр Петрович"],
+    //                1: ["Авиарежим", "Wi-Fi", "Bluetooth", "Сотовая связь", "Режим модема", "VPN"],
+    //                2: ["Уведомления", "Звуки, тактильные сигналы", "Фокусирование", "Экранное время"],
+    //                3: ["Основные", "Пункт управления", "Экран и яркость", "Экран 'Домой'"]]
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -98,14 +98,14 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
         
-//        let image = settingModel[indexPath.section].options[indexPath.row].icon
-//        let image = self.[indexPath.section]?[indexPath.row]
+        //        let image = settingModel[indexPath.section].options[indexPath.row].icon
+        //        let image = self.[indexPath.section]?[indexPath.row]
         cell?.imageView?.image = settingModel[indexPath.section].options[indexPath.row].icon
         
-//        cell?.textLabel?.text = self.data[indexPath.section]?[indexPath.row]
+        //        cell?.textLabel?.text = self.data[indexPath.section]?[indexPath.row]
         cell?.textLabel?.text = settingModel[indexPath.section].options[indexPath.row].title
         cell?.detailTextLabel?.text = settingModel[indexPath.section].options[indexPath.row].detailTextLabel
-//        cell?.detailTextLabel?.text = defaultDetailData[indexPath.section]?[indexPath.row]
+        //        cell?.detailTextLabel?.text = defaultDetailData[indexPath.section]?[indexPath.row]
         return cell!
     }
     
@@ -117,25 +117,26 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             tableView.cellForRow(at: IndexPath(row: 4, section: 1))?.detailTextLabel?.text = "Выкл."
             tableView.cellForRow(at: IndexPath(row: 5, section: 1))?.detailTextLabel?.text = "Не подключено"
         } else {
-            tableView.cellForRow(at: IndexPath(row: 1, section: 1))?.detailTextLabel?.text = defaultDetailData[1]?[1]
-            tableView.cellForRow(at: IndexPath(row: 2, section: 1))?.detailTextLabel?.text = defaultDetailData[1]?[2]
-            tableView.cellForRow(at: IndexPath(row: 3, section: 1))?.detailTextLabel?.text = defaultDetailData[1]?[3]
-            tableView.cellForRow(at: IndexPath(row: 4, section: 1))?.detailTextLabel?.text = defaultDetailData[1]?[4]
-            tableView.cellForRow(at: IndexPath(row: 5, section: 1))?.detailTextLabel?.text =  defaultDetailData[1]?[5]
+            tableView.cellForRow(at: IndexPath(row: 1, section: 1))?.detailTextLabel?.text = settingModel[1].options[1].detailTextLabel
+            tableView.cellForRow(at: IndexPath(row: 2, section: 1))?.detailTextLabel?.text = settingModel[1].options[2].detailTextLabel
+            tableView.cellForRow(at: IndexPath(row: 3, section: 1))?.detailTextLabel?.text = settingModel[1].options[3].detailTextLabel
+            tableView.cellForRow(at: IndexPath(row: 4, section: 1))?.detailTextLabel?.text = settingModel[1].options[4].detailTextLabel
+            tableView.cellForRow(at: IndexPath(row: 5, section: 1))?.detailTextLabel?.text =  settingModel[1].options[5].detailTextLabel
         }
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch [indexPath.section, indexPath.row] {
-        case [1, 1]:
-            navigationController?.pushViewController(WiFiSettingsViewController(), animated: true)
-        case [1, 2]:
-            navigationController?.pushViewController(BluetothSettingsViewController(), animated: true)
-        default:
-            print("Нажата клавиша \(settingModel[indexPath.section].options[indexPath.row].title)")
-        }
-        tableView.deselectRow(at: indexPath, animated: true)
+
+
+func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    switch [indexPath.section, indexPath.row] {
+    case [1, 1]:
+        navigationController?.pushViewController(WiFiSettingsViewController(), animated: true)
+    case [1, 2]:
+        navigationController?.pushViewController(BluetothSettingsViewController(), animated: true)
+    default:
+        print("Нажата клавиша \(settingModel[indexPath.section].options[indexPath.row].title)")
     }
+    tableView.deselectRow(at: indexPath, animated: true)
+}
 }
 
 extension ViewController: UISearchResultsUpdating {

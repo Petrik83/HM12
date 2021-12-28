@@ -34,7 +34,7 @@ class BluetothSettingsViewController: UIViewController {
         view.backgroundColor = .systemGray6
         viewHierarchy()
         setupLayout()
-        if defaultDetailData[1]?[2] == "Вкл." {
+        if settingModel[1].options[2].detailTextLabel == "Вкл." {
             bluetoothSettingsData = bluetoothOnSettingsData
         }
     }
@@ -75,7 +75,7 @@ extension BluetothSettingsViewController: UITableViewDataSource, UITableViewDele
         
         if indexPath.section == 0 && indexPath.row == 0 {
             bluetoothSwitch.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
-            if defaultDetailData[1]?[2] == "Выкл." {
+            if settingModel[1].options[2].detailTextLabel == "Выкл." {
                 bluetoothSwitch.setOn(false, animated: true)
             } else {
                 bluetoothSwitch.setOn(true, animated: true)
@@ -122,13 +122,13 @@ extension BluetothSettingsViewController: UITableViewDataSource, UITableViewDele
     @objc func switchChanged(_ sender : UISwitch!){
         if !sender.isOn {
             bluetoothSettingsData = [0: ["Bluetooth"]]
-            defaultDetailData[1]?[2] = "Выкл."
+            settingModel[1].options[2].detailTextLabel = "Выкл."
             bluetoothSwitch.setOn(false, animated: true)
             bluetoothSettingsSubTitleData = bluetoothOffSettingsSubTitleData
             bluetoothTableView.reloadData()
         } else {
             bluetoothSettingsData = bluetoothOnSettingsData
-            defaultDetailData[1]?[2] = "Вкл."
+            settingModel[1].options[2].detailTextLabel = "Вкл."
             bluetoothSwitch.setOn(true, animated: true)
             bluetoothTableView.reloadData()
         }
