@@ -7,6 +7,8 @@
 
 import UIKit
 
+var settingModel = Section.getData()
+
 struct SettingCell {
     
     enum CellAccecoryType {

@@ -11,10 +11,10 @@ var defaultDetailData = [0: ["Apple ID, iCloud, контент и покупки
                          1: ["", "Вкл.", "Выкл.", "", "", "Не подключено"]]
 
 class ViewController: UIViewController {
-    var data = [0: ["Александр Петрович"],
-                1: ["Авиарежим", "Wi-Fi", "Bluetooth", "Сотовая связь", "Режим модема", "VPN"],
-                2: ["Уведомления", "Звуки, тактильные сигналы", "Фокусирование", "Экранное время"],
-                3: ["Основные", "Пункт управления", "Экран и яркость", "Экран 'Домой'"]]
+//    var data = [0: ["Александр Петрович"],
+//                1: ["Авиарежим", "Wi-Fi", "Bluetooth", "Сотовая связь", "Режим модема", "VPN"],
+//                2: ["Уведомления", "Звуки, тактильные сигналы", "Фокусирование", "Экранное время"],
+//                3: ["Основные", "Пункт управления", "Экран и яркость", "Экран 'Домой'"]]
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -63,11 +63,11 @@ class TableViewSell: UITableViewCell {
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return data.count
+        return settingModel.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data[section]?.count ?? 0
+        return settingModel[section].options.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -98,10 +98,14 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
         
-        let image = self.data[indexPath.section]?[indexPath.row]
-        cell?.imageView?.image = UIImage(named: image ?? "")
-        cell?.textLabel?.text = self.data[indexPath.section]?[indexPath.row]
-        cell?.detailTextLabel?.text = defaultDetailData[indexPath.section]?[indexPath.row]
+//        let image = settingModel[indexPath.section].options[indexPath.row].icon
+//        let image = self.[indexPath.section]?[indexPath.row]
+        cell?.imageView?.image = settingModel[indexPath.section].options[indexPath.row].icon
+        
+//        cell?.textLabel?.text = self.data[indexPath.section]?[indexPath.row]
+        cell?.textLabel?.text = settingModel[indexPath.section].options[indexPath.row].title
+        cell?.detailTextLabel?.text = settingModel[indexPath.section].options[indexPath.row].detailTextLabel
+//        cell?.detailTextLabel?.text = defaultDetailData[indexPath.section]?[indexPath.row]
         return cell!
     }
     
@@ -128,7 +132,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         case [1, 2]:
             navigationController?.pushViewController(BluetothSettingsViewController(), animated: true)
         default:
-            print("Нажата клавиша \(data[indexPath.section]![indexPath.row])")
+            print("Нажата клавиша \(settingModel[indexPath.section].options[indexPath.row].title)")
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
