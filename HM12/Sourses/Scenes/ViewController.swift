@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 let idCell = "TableViewSell"
 var switchPosition = false
 //var defaultDetailData = [0: ["Apple ID, iCloud, контент и покупки"],
@@ -36,6 +37,12 @@ class ViewController: UIViewController {
         let search = UISearchController(searchResultsController: nil)
         search.searchResultsUpdater = self
         self.navigationItem.searchController = search
+        if settingModel[1].options[2].detailTextLabel == "Вкл." {
+            bluetoothSettingsData = bluetoothOnSettingsData
+        }
+        if settingModel[1].options[1].detailTextLabel == "Вкл." {
+            wiFiSettingsData = wiFiOnSettingsData
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

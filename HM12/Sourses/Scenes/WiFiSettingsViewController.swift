@@ -27,9 +27,9 @@ class WiFiSettingsViewController: UIViewController {
         view.backgroundColor = .systemGray6
         viewHierarchy()
         setupLayout()
-        if settingModel[1].options[1].detailTextLabel == "Вкл." {
-            wiFiSettingsData = wiFiOnSettingsData
-        }
+//        if settingModel[1].options[1].detailTextLabel == "Вкл." {
+//            wiFiSettingsData = wiFiOnSettingsData
+//        }
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
