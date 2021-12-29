@@ -8,16 +8,7 @@
 import UIKit
 
 var bluetoothSettingsData = Section.getBluetoothOffData()
-//[0: ["Bluetooth"]]
-
 var bluetoothOnSettingsData = Section.getBluetoothOnData()
-//[0: ["Bluetooth"],
-//                               1: ["Apple whatch", "Airpods"]]
-
-//let bluetoothOffSettingsSubTitleData = [0: [""],
-//                                        1: ["Не подключено", "Не подключено"]]
-//
-//var bluetoothSettingsSubTitleData = bluetoothOffSettingsSubTitleData
 
 class BluetothSettingsViewController: UIViewController {
     
@@ -38,11 +29,6 @@ class BluetothSettingsViewController: UIViewController {
         view.backgroundColor = .systemGray6
         viewHierarchy()
         setupLayout()
-//        print(bluetoothSettingsData)
-
-//        if settingModel[1].options[2].detailTextLabel == "Вкл." {
-//            bluetoothSettingsData = bluetoothOnSettingsData
-//        }
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -78,7 +64,6 @@ extension BluetothSettingsViewController: UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = setCellStyle(style: bluetoothSettingsData[indexPath.section].options[indexPath.row].style)
-        //        UITableViewCell(style: .value1, reuseIdentifier: idCell)
         
         switch bluetoothSettingsData[indexPath.section].options[indexPath.row].type {
         case .none:
@@ -97,19 +82,6 @@ extension BluetothSettingsViewController: UITableViewDataSource, UITableViewDele
         case .detailButton:
             cell.accessoryType = .detailButton
         }
-        
-        //        if indexPath.section == 0 && indexPath.row == 0 {
-        //            bluetoothSwitch.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
-        //            if settingModel[1].options[2].detailTextLabel == "Выкл." {
-        //                bluetoothSwitch.setOn(false, animated: true)
-        //            } else {
-        //                bluetoothSwitch.setOn(true, animated: true)
-        //            }
-        //            cell.accessoryView = bluetoothSwitch
-        //            cell.selectionStyle = .none
-        //        } else {
-        //            cell.accessoryType = .detailButton
-        //        }
         
         cell.textLabel?.text = bluetoothSettingsData[indexPath.section].options[indexPath.row].title
         cell.detailTextLabel?.text = bluetoothSettingsData[indexPath.section].options[indexPath.row].detailTextLabel
