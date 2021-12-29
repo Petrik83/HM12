@@ -50,7 +50,7 @@ class WiFiSettingsViewController: UIViewController {
     }
 }
 
-extension WiFiSettingsViewController: UITableViewDataSource, UITableViewDelegate {
+extension WiFiSettingsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return wiFiSettingsData.count
@@ -99,6 +99,23 @@ extension WiFiSettingsViewController: UITableViewDataSource, UITableViewDelegate
         return nil
     }
     
+    @objc func switchChanged(_ sender : UISwitch!) {
+        
+        if !sender.isOn {
+            wiFiSettingsData = Section.getWiFiData()
+            settingModel[1].options[1].detailTextLabel = "Выкл."
+            wiFiSwitch.setOn(false, animated: true)
+            wiFitableView.reloadData()
+        } else {
+            wiFiSettingsData = wiFiOnSettingsData
+            settingModel[1].options[1].detailTextLabel = "Вкл."
+            wiFitableView.reloadData()
+            wiFiSwitch.setOn(true, animated: true)
+        }
+    }
+}
+
+extension WiFiSettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch [indexPath.section, indexPath.row] {
         case [0, 0]:
@@ -121,21 +138,6 @@ extension WiFiSettingsViewController: UITableViewDataSource, UITableViewDelegate
                     settingModel[1].options[1].detailTextLabel = temp.title
                 }
             }
-        }
-    }
-    
-    @objc func switchChanged(_ sender : UISwitch!) {
-        
-        if !sender.isOn {
-            wiFiSettingsData = Section.getWiFiData()
-            settingModel[1].options[1].detailTextLabel = "Выкл."
-            wiFiSwitch.setOn(false, animated: true)
-            wiFitableView.reloadData()
-        } else {
-            wiFiSettingsData = wiFiOnSettingsData
-            settingModel[1].options[1].detailTextLabel = "Вкл."
-            wiFitableView.reloadData()
-            wiFiSwitch.setOn(true, animated: true)
         }
     }
 }

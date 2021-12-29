@@ -65,7 +65,7 @@ class TableViewSell: UITableViewCell {
     }
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
+extension ViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return settingModel.count
@@ -123,7 +123,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             switchPosition = false
         }
     }
-    
+}
+
+extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch [indexPath.section, indexPath.row] {
         case [1, 1]:
