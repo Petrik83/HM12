@@ -60,14 +60,23 @@ extension WiFiSettingsViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return wiFiSettingsData[section].options.count 
+        return wiFiSettingsData[section].options.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: idCell)
         
-        if indexPath.section == 0 && indexPath.row == 0 {
+        let cell = setCellStyle(style: wiFiSettingsData[indexPath.section].options[indexPath.row].style)
+        //UITableViewCell(style: .default, reuseIdentifier: idCell)
+        
+        switch wiFiSettingsData[indexPath.section].options[indexPath.row].type {
+        case .none:
+            cell.accessoryType = .none
+        case .disclosureIndicator:
+            cell.accessoryType = .disclosureIndicator
+        case .switchCell:
+            let wiFiSwitch = UISwitch()
             wiFiSwitch.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
+            
             if settingModel[1].options[1].detailTextLabel == "Выкл." {
                 wiFiSwitch.setOn(false, animated: true)
             } else {
@@ -75,14 +84,37 @@ extension WiFiSettingsViewController: UITableViewDataSource, UITableViewDelegate
             }
             cell.accessoryView = wiFiSwitch
             cell.selectionStyle = .none
-        } else {
-            if indexPath.section == 0 && indexPath.row == 1 {
-                cell.imageView?.image = UIImage(named: "check")
-                cell.accessoryType = .detailButton
-            } else {
-                cell.accessoryType = .detailButton
-            }
+        case .detailButton:
+            cell.accessoryType = .detailButton
         }
+        
+        
+        
+        if indexPath.section == 0 && indexPath.row == 1 {
+            cell.imageView?.image = UIImage(named: "check")
+            cell.accessoryType = .detailButton
+        }
+        
+        
+        
+        
+        //        if indexPath.section == 0 && indexPath.row == 0 {
+        //            wiFiSwitch.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
+        //            if settingModel[1].options[1].detailTextLabel == "Выкл." {
+        //                wiFiSwitch.setOn(false, animated: true)
+        //            } else {
+        //                wiFiSwitch.setOn(true, animated: true)
+        //            }
+        //            cell.accessoryView = wiFiSwitch
+        //            cell.selectionStyle = .none
+        //        } else {
+        //            if indexPath.section == 0 && indexPath.row == 1 {
+        //                cell.imageView?.image = UIImage(named: "check")
+        //                cell.accessoryType = .detailButton
+        //            } else {
+        //                cell.accessoryType = .detailButton
+        //            }
+        //        }
         
         cell.textLabel?.text = wiFiSettingsData[indexPath.section].options[indexPath.row].title
         return cell
@@ -121,6 +153,7 @@ extension WiFiSettingsViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     @objc func switchChanged(_ sender : UISwitch!) {
+        
         if !sender.isOn {
             wiFiSettingsData = Section.getWiFiData()
             settingModel[1].options[1].detailTextLabel = "Выкл."
