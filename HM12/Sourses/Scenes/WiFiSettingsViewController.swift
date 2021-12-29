@@ -6,9 +6,8 @@
 //
 
 import UIKit
-var wiFiSettingsData = [0: ["Wi-Fi"]]
-let wiFiOnSettingsData = [0: ["Wi-Fi"],
-                          1: ["macWiFi", "avia8-1 net", "free Wi-Fi"]]
+var wiFiSettingsData = Section.getWiFiData()
+let wiFiOnSettingsData = Section.getWiFiOnData()
 
 class WiFiSettingsViewController: UIViewController {
     let wiFiSwitch = UISwitch()
@@ -28,9 +27,9 @@ class WiFiSettingsViewController: UIViewController {
         view.backgroundColor = .systemGray6
         viewHierarchy()
         setupLayout()
-        if defaultDetailData[1]?[1] == "Вкл." {
-            wiFiSettingsData = wiFiOnSettingsData
-        }
+//        if settingModel[1].options[1].detailTextLabel == "Вкл." {
+//            wiFiSettingsData = wiFiOnSettingsData
+//        }
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -61,37 +60,69 @@ extension WiFiSettingsViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return wiFiSettingsData[section]?.count ?? 0
+        return wiFiSettingsData[section].options.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: idCell)
         
-        if indexPath.section == 0 && indexPath.row == 0 {
+        let cell = setCellStyle(style: wiFiSettingsData[indexPath.section].options[indexPath.row].style)
+        //UITableViewCell(style: .default, reuseIdentifier: idCell)
+        
+        switch wiFiSettingsData[indexPath.section].options[indexPath.row].type {
+        case .none:
+            cell.accessoryType = .none
+        case .disclosureIndicator:
+            cell.accessoryType = .disclosureIndicator
+        case .switchCell:
+            let wiFiSwitch = UISwitch()
             wiFiSwitch.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
-            if defaultDetailData[1]?[1] == "Выкл." {
+            
+            if settingModel[1].options[1].detailTextLabel == "Выкл." {
                 wiFiSwitch.setOn(false, animated: true)
             } else {
                 wiFiSwitch.setOn(true, animated: true)
             }
             cell.accessoryView = wiFiSwitch
             cell.selectionStyle = .none
-        } else {
-            if indexPath.section == 0 && indexPath.row == 1 {
-                cell.imageView?.image = UIImage(named: "check")
-                cell.accessoryType = .detailButton
-            } else {
-                cell.accessoryType = .detailButton
-            }
+        case .detailButton:
+            cell.accessoryType = .detailButton
         }
         
-        cell.textLabel?.text = wiFiSettingsData[indexPath.section]?[indexPath.row]
+        
+        
+        if indexPath.section == 0 && indexPath.row == 1 {
+            cell.imageView?.image = UIImage(named: "check")
+            cell.accessoryType = .detailButton
+        }
+        
+        
+        
+        
+        //        if indexPath.section == 0 && indexPath.row == 0 {
+        //            wiFiSwitch.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
+        //            if settingModel[1].options[1].detailTextLabel == "Выкл." {
+        //                wiFiSwitch.setOn(false, animated: true)
+        //            } else {
+        //                wiFiSwitch.setOn(true, animated: true)
+        //            }
+        //            cell.accessoryView = wiFiSwitch
+        //            cell.selectionStyle = .none
+        //        } else {
+        //            if indexPath.section == 0 && indexPath.row == 1 {
+        //                cell.imageView?.image = UIImage(named: "check")
+        //                cell.accessoryType = .detailButton
+        //            } else {
+        //                cell.accessoryType = .detailButton
+        //            }
+        //        }
+        
+        cell.textLabel?.text = wiFiSettingsData[indexPath.section].options[indexPath.row].title
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section != 0 {
-            return "МОИ СЕТИ"
+            return wiFiSettingsData[section].title
         }
         return nil
     }
@@ -101,35 +132,36 @@ extension WiFiSettingsViewController: UITableViewDataSource, UITableViewDelegate
         case [0, 0]:
             break
         default:
-            let temp = wiFiSettingsData[indexPath.section]?[indexPath.row]
-            if wiFiSettingsData[0]?.count == 1 {
-                wiFiSettingsData[indexPath.section]?.remove(at: indexPath.row)
-                wiFiSettingsData[0]?.append(temp ?? "")
-                defaultDetailData[1]?[1] = temp ?? ""
+            let temp = wiFiSettingsData[indexPath.section].options[indexPath.row]
+            if wiFiSettingsData[0].options.count == 1 {
+                wiFiSettingsData[indexPath.section].options.remove(at: indexPath.row)
+                wiFiSettingsData[0].options.append(temp)
+                settingModel[1].options[1].detailTextLabel = temp.title
                 wiFitableView.reloadData()
             } else {
                 if indexPath.section != 0 {
-                    let temp1 = wiFiSettingsData[0]?[1]
-                    wiFiSettingsData[1]?.append(temp1 ?? "")
-                    wiFiSettingsData[0]?.remove(at: 1)
-                    wiFiSettingsData[indexPath.section]?.remove(at: indexPath.row)
-                    wiFiSettingsData[0]?.append(temp ?? "")
+                    let temp1 = wiFiSettingsData[0].options[1]
+                    wiFiSettingsData[1].options.append(temp1)
+                    wiFiSettingsData[0].options.remove(at: 1)
+                    wiFiSettingsData[indexPath.section].options.remove(at: indexPath.row)
+                    wiFiSettingsData[0].options.append(temp)
                     wiFitableView.reloadData()
-                    defaultDetailData[1]?[1] = temp ?? ""
+                    settingModel[1].options[1].detailTextLabel = temp.title
                 }
             }
         }
     }
     
     @objc func switchChanged(_ sender : UISwitch!) {
+        
         if !sender.isOn {
-            wiFiSettingsData = [0: ["Wi-Fi"]]
-            defaultDetailData[1]?[1] = "Выкл."
+            wiFiSettingsData = Section.getWiFiData()
+            settingModel[1].options[1].detailTextLabel = "Выкл."
             wiFiSwitch.setOn(false, animated: true)
             wiFitableView.reloadData()
         } else {
             wiFiSettingsData = wiFiOnSettingsData
-            defaultDetailData[1]?[1] = "Вкл."
+            settingModel[1].options[1].detailTextLabel = "Вкл."
             wiFitableView.reloadData()
             wiFiSwitch.setOn(true, animated: true)
         }
