@@ -76,6 +76,7 @@ extension WiFiSettingsViewController: UITableViewDataSource {
         case .switchCell:
             let wiFiSwitch = UISwitch()
             wiFiSwitch.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
+            if let 
             if settingModel[1].options[1].detailTextLabel == "Выкл." {
                 wiFiSwitch.setOn(false, animated: true)
             } else {

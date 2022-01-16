@@ -32,12 +32,17 @@ class ViewController: UIViewController {
         search.searchResultsUpdater = self
         self.navigationItem.searchController = search
         
-        if settingModel[1].options[2].detailTextLabel == "Вкл." {
+        
+        if let bluetoothSwitch = settingModel[safe: 1]?.options[safe: 2]?.detailTextLabel {
+            if bluetoothSwitch == "Вкл." {
             BluetothSettingsViewController.bluetoothSettingsData = BluetothSettingsViewController.bluetoothOnSettingsData
+            }
         }
         
-        if settingModel[1].options[1].detailTextLabel == "Вкл." {
-            WiFiSettingsViewController.wiFiSettingsData = WiFiSettingsViewController.wiFiOnSettingsData
+        if let wiFiSwitch = settingModel[safe: 1]?.options[safe: 1]?.detailTextLabel {
+            if wiFiSwitch  == "Вкл." {
+                WiFiSettingsViewController.wiFiSettingsData = WiFiSettingsViewController.wiFiOnSettingsData
+            }
         }
     }
     
