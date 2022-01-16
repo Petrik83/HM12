@@ -103,7 +103,7 @@ extension ViewController: UITableViewDataSource {
         cell?.imageView?.image = settingModel[indexPath.section].options[indexPath.row].icon
         cell?.textLabel?.text = settingModel[indexPath.section].options[indexPath.row].title
         cell?.detailTextLabel?.text = settingModel[indexPath.section].options[indexPath.row].detailTextLabel
-        return cell!
+        return cell ?? UITableViewCell()
     }
     
     @objc func switchChanged(_ sender : UISwitch!){
