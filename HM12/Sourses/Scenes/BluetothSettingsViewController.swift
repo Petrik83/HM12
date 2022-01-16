@@ -109,15 +109,15 @@ extension BluetothSettingsViewController: UITableViewDataSource {
     }
     
     @objc func switchChanged(_ sender : UISwitch!) {
-        if !sender.isOn {
-            BluetothSettingsViewController.bluetoothSettingsData = Section.getBluetoothOffData()
-            settingModel[1].options[2].detailTextLabel = "Выкл."
-            bluetoothSwitch.setOn(false, animated: true)
-            bluetoothTableView.reloadData()
-        } else {
+        if sender.isOn {
             BluetothSettingsViewController.bluetoothSettingsData = Section.getBluetoothOnData()
             settingModel[1].options[2].detailTextLabel = "Вкл."
             bluetoothSwitch.setOn(true, animated: true)
+            bluetoothTableView.reloadData()
+        } else {
+            BluetothSettingsViewController.bluetoothSettingsData = Section.getBluetoothOffData()
+            settingModel[1].options[2].detailTextLabel = "Выкл."
+            bluetoothSwitch.setOn(false, animated: true)
             bluetoothTableView.reloadData()
         }
     }

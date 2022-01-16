@@ -105,16 +105,16 @@ extension WiFiSettingsViewController: UITableViewDataSource {
     
     @objc func switchChanged(_ sender : UISwitch!) {
         
-        if !sender.isOn {
-            WiFiSettingsViewController.wiFiSettingsData = Section.getWiFiData()
-            settingModel[1].options[1].detailTextLabel = "Выкл."
-            wiFiSwitch.setOn(false, animated: true)
-            wiFitableView.reloadData()
-        } else {
+        if sender.isOn {
             WiFiSettingsViewController.wiFiSettingsData = WiFiSettingsViewController.wiFiOnSettingsData
             settingModel[1].options[1].detailTextLabel = "Вкл."
             wiFitableView.reloadData()
             wiFiSwitch.setOn(true, animated: true)
+        } else {
+            WiFiSettingsViewController.wiFiSettingsData = Section.getWiFiData()
+            settingModel[1].options[1].detailTextLabel = "Выкл."
+            wiFiSwitch.setOn(false, animated: true)
+            wiFitableView.reloadData()
         }
     }
 }
