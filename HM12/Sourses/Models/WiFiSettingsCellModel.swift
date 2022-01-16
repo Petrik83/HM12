@@ -11,19 +11,19 @@ extension Section {
     static func getWiFiOnData() -> [Section] {
         return [
             Section(title: "", options: [
-                SettingCell(icon: UIImage(named: "Wi-Fi"), title: "Wi-Fi", style: .default, detailTextLabel: nil, type: .switchCell)
+                CellModel(icon: UIImage(named: "Wi-Fi"), title: "Wi-Fi", style: .default, detailTextLabel: nil, type: .switchCell)
             ]),
             Section(title: "МОИ СЕТИ", options: [
-                SettingCell(icon: UIImage(named: "macWiFi"), title: "macWiFi", style: .default, detailTextLabel: nil, type: .detailButton),
-                SettingCell(icon: UIImage(named: "avia8-1 net"), title: "avia8-1 net", style: .default, detailTextLabel: nil, type: .detailButton),
-                SettingCell(icon: UIImage(named: "free Wi-Fi"), title: "free Wi-Fi", style: .default, detailTextLabel: nil, type: .detailButton)
+                CellModel(icon: UIImage(named: "macWiFi"), title: "macWiFi", style: .default, detailTextLabel: nil, type: .detailButton),
+                CellModel(icon: UIImage(named: "avia8-1 net"), title: "avia8-1 net", style: .default, detailTextLabel: nil, type: .detailButton),
+                CellModel(icon: UIImage(named: "free Wi-Fi"), title: "free Wi-Fi", style: .default, detailTextLabel: nil, type: .detailButton)
             ])
         ]
     }
     static func getWiFiData() -> [Section] {
         return [
             Section(title: "", options: [
-                SettingCell(icon: UIImage(named: "Wi-Fi"), title: "Wi-Fi", style: .default, detailTextLabel: nil, type: .switchCell)
+                CellModel(icon: UIImage(named: "Wi-Fi"), title: "Wi-Fi", style: .default, detailTextLabel: nil, type: .switchCell)
             ])]
     }
 }

@@ -9,16 +9,16 @@ import UIKit
 
 extension UIViewController {
 
-    func setCellStyle(style: SettingCell.CellStyle) -> UITableViewCell {
+    func setCellStyle(style: CellModel.CellStyle) -> UITableViewCell {
         switch style {
         case .subtitle:
-            return UITableViewCell(style: .subtitle, reuseIdentifier: idCell)
+            return UITableViewCell(style: .subtitle, reuseIdentifier: ViewController.idCell)
         case .value1:
-            return UITableViewCell(style: .value1, reuseIdentifier: idCell)
+            return UITableViewCell(style: .value1, reuseIdentifier: ViewController.idCell)
         case .value2:
-            return  UITableViewCell(style: .value2, reuseIdentifier: idCell)
+            return  UITableViewCell(style: .value2, reuseIdentifier: ViewController.idCell)
         case .default:
-            return  UITableViewCell(style: .default, reuseIdentifier: idCell)
+            return  UITableViewCell(style: .default, reuseIdentifier: ViewController.idCell)
         }
     }
 }
