@@ -7,12 +7,12 @@
 
 import UIKit
 
-let idCell = "TableViewSell"
-var switchPosition = false
-
 class ViewController: UIViewController {
     
-    lazy var tableView: UITableView = {
+    static let idCell = "TableViewSell"
+    var switchPosition = false
+    
+    private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.backgroundColor = .systemGray6
         tableView.dataSource = self
@@ -33,11 +33,11 @@ class ViewController: UIViewController {
         self.navigationItem.searchController = search
         
         if settingModel[1].options[2].detailTextLabel == "Вкл." {
-            bluetoothSettingsData = bluetoothOnSettingsData
+            BluetothSettingsViewController.bluetoothSettingsData = BluetothSettingsViewController.bluetoothOnSettingsData
         }
         
         if settingModel[1].options[1].detailTextLabel == "Вкл." {
-            wiFiSettingsData = wiFiOnSettingsData
+            WiFiSettingsViewController.wiFiSettingsData = WiFiSettingsViewController.wiFiOnSettingsData
         }
     }
     
@@ -61,7 +61,7 @@ class ViewController: UIViewController {
 
 class TableViewSell: UITableViewCell {
     override var reuseIdentifier: String? {
-        return idCell
+        return ViewController.idCell
     }
 }
 
@@ -77,10 +77,10 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
-        var cell = tableView.dequeueReusableCell(withIdentifier: idCell)
+        var cell = tableView.dequeueReusableCell(withIdentifier: ViewController.idCell)
         
         if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: idCell)
+            cell = UITableViewCell(style: .default, reuseIdentifier: ViewController.idCell)
         }
         
         cell = setCellStyle(style: settingModel[indexPath.section].options[indexPath.row].style)

@@ -6,10 +6,14 @@
 //
 
 import UIKit
-var wiFiSettingsData = Section.getWiFiData()
-let wiFiOnSettingsData = Section.getWiFiOnData()
+//var wiFiSettingsData = Section.getWiFiData()
+//let wiFiOnSettingsData = Section.getWiFiOnData()
 
 class WiFiSettingsViewController: UIViewController {
+    static var wiFiSettingsData = Section.getWiFiData()
+    static let wiFiOnSettingsData = Section.getWiFiOnData()
+
+    
     let wiFiSwitch = UISwitch()
     
     lazy var wiFitableView: UITableView = {
@@ -53,18 +57,18 @@ class WiFiSettingsViewController: UIViewController {
 extension WiFiSettingsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return wiFiSettingsData.count
+        return WiFiSettingsViewController.wiFiSettingsData.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return wiFiSettingsData[section].options.count
+        return WiFiSettingsViewController.wiFiSettingsData[section].options.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = setCellStyle(style: wiFiSettingsData[indexPath.section].options[indexPath.row].style)
+        let cell = setCellStyle(style: WiFiSettingsViewController.wiFiSettingsData[indexPath.section].options[indexPath.row].style)
         
-        switch wiFiSettingsData[indexPath.section].options[indexPath.row].type {
+        switch WiFiSettingsViewController.wiFiSettingsData[indexPath.section].options[indexPath.row].type {
         case .none:
             cell.accessoryType = .none
         case .disclosureIndicator:
@@ -88,13 +92,13 @@ extension WiFiSettingsViewController: UITableViewDataSource {
             cell.accessoryType = .detailButton
         }
        
-        cell.textLabel?.text = wiFiSettingsData[indexPath.section].options[indexPath.row].title
+        cell.textLabel?.text = WiFiSettingsViewController.wiFiSettingsData[indexPath.section].options[indexPath.row].title
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section != 0 {
-            return wiFiSettingsData[section].title
+            return WiFiSettingsViewController.wiFiSettingsData[section].title
         }
         return nil
     }
@@ -102,12 +106,12 @@ extension WiFiSettingsViewController: UITableViewDataSource {
     @objc func switchChanged(_ sender : UISwitch!) {
         
         if !sender.isOn {
-            wiFiSettingsData = Section.getWiFiData()
+            WiFiSettingsViewController.wiFiSettingsData = Section.getWiFiData()
             settingModel[1].options[1].detailTextLabel = "Выкл."
             wiFiSwitch.setOn(false, animated: true)
             wiFitableView.reloadData()
         } else {
-            wiFiSettingsData = wiFiOnSettingsData
+            WiFiSettingsViewController.wiFiSettingsData = WiFiSettingsViewController.wiFiOnSettingsData
             settingModel[1].options[1].detailTextLabel = "Вкл."
             wiFitableView.reloadData()
             wiFiSwitch.setOn(true, animated: true)
@@ -121,19 +125,19 @@ extension WiFiSettingsViewController: UITableViewDelegate {
         case [0, 0]:
             break
         default:
-            let temp = wiFiSettingsData[indexPath.section].options[indexPath.row]
-            if wiFiSettingsData[0].options.count == 1 {
-                wiFiSettingsData[indexPath.section].options.remove(at: indexPath.row)
-                wiFiSettingsData[0].options.append(temp)
+            let temp = WiFiSettingsViewController.wiFiSettingsData[indexPath.section].options[indexPath.row]
+            if WiFiSettingsViewController.wiFiSettingsData[0].options.count == 1 {
+                WiFiSettingsViewController.wiFiSettingsData[indexPath.section].options.remove(at: indexPath.row)
+                WiFiSettingsViewController.wiFiSettingsData[0].options.append(temp)
                 settingModel[1].options[1].detailTextLabel = temp.title
                 wiFitableView.reloadData()
             } else {
                 if indexPath.section != 0 {
-                    let temp1 = wiFiSettingsData[0].options[1]
-                    wiFiSettingsData[1].options.append(temp1)
-                    wiFiSettingsData[0].options.remove(at: 1)
-                    wiFiSettingsData[indexPath.section].options.remove(at: indexPath.row)
-                    wiFiSettingsData[0].options.append(temp)
+                    let temp1 = WiFiSettingsViewController.wiFiSettingsData[0].options[1]
+                    WiFiSettingsViewController.wiFiSettingsData[1].options.append(temp1)
+                    WiFiSettingsViewController.wiFiSettingsData[0].options.remove(at: 1)
+                    WiFiSettingsViewController.wiFiSettingsData[indexPath.section].options.remove(at: indexPath.row)
+                    WiFiSettingsViewController.wiFiSettingsData[0].options.append(temp)
                     wiFitableView.reloadData()
                     settingModel[1].options[1].detailTextLabel = temp.title
                 }

@@ -7,14 +7,16 @@
 
 import UIKit
 
-var bluetoothSettingsData = Section.getBluetoothOffData()
-var bluetoothOnSettingsData = Section.getBluetoothOnData()
+
 
 class BluetothSettingsViewController: UIViewController {
     
+    static var bluetoothSettingsData = Section.getBluetoothOffData()
+    static var bluetoothOnSettingsData = Section.getBluetoothOnData()
+    
     let bluetoothSwitch = UISwitch()
     
-    lazy var bluetoothTableView: UITableView = {
+    private lazy var bluetoothTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.backgroundColor = .systemGray6
         tableView.dataSource = self
@@ -55,17 +57,17 @@ class BluetothSettingsViewController: UIViewController {
 extension BluetothSettingsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return bluetoothSettingsData.count
+        return BluetothSettingsViewController.bluetoothSettingsData.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bluetoothSettingsData[section].options.count
+        return BluetothSettingsViewController.bluetoothSettingsData[section].options.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = setCellStyle(style: bluetoothSettingsData[indexPath.section].options[indexPath.row].style)
+        let cell = setCellStyle(style: BluetothSettingsViewController.bluetoothSettingsData[indexPath.section].options[indexPath.row].style)
         
-        switch bluetoothSettingsData[indexPath.section].options[indexPath.row].type {
+        switch BluetothSettingsViewController.bluetoothSettingsData[indexPath.section].options[indexPath.row].type {
         case .none:
             cell.accessoryType = .none
         case .disclosureIndicator:
@@ -83,14 +85,14 @@ extension BluetothSettingsViewController: UITableViewDataSource {
             cell.accessoryType = .detailButton
         }
         
-        cell.textLabel?.text = bluetoothSettingsData[indexPath.section].options[indexPath.row].title
-        cell.detailTextLabel?.text = bluetoothSettingsData[indexPath.section].options[indexPath.row].detailTextLabel
+        cell.textLabel?.text = BluetothSettingsViewController.bluetoothSettingsData[indexPath.section].options[indexPath.row].title
+        cell.detailTextLabel?.text = BluetothSettingsViewController.bluetoothSettingsData[indexPath.section].options[indexPath.row].detailTextLabel
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section != 0 {
-            return bluetoothSettingsData[section].title
+            return BluetothSettingsViewController.bluetoothSettingsData[section].title
         }
         return nil
     }
@@ -108,12 +110,12 @@ extension BluetothSettingsViewController: UITableViewDataSource {
     
     @objc func switchChanged(_ sender : UISwitch!) {
         if !sender.isOn {
-            bluetoothSettingsData = Section.getBluetoothOffData()
+            BluetothSettingsViewController.bluetoothSettingsData = Section.getBluetoothOffData()
             settingModel[1].options[2].detailTextLabel = "Выкл."
             bluetoothSwitch.setOn(false, animated: true)
             bluetoothTableView.reloadData()
         } else {
-            bluetoothSettingsData = Section.getBluetoothOnData()
+            BluetothSettingsViewController.bluetoothSettingsData = Section.getBluetoothOnData()
             settingModel[1].options[2].detailTextLabel = "Вкл."
             bluetoothSwitch.setOn(true, animated: true)
             bluetoothTableView.reloadData()
@@ -127,8 +129,8 @@ extension BluetothSettingsViewController: UITableViewDelegate {
         case [0, 0]:
             break
         default:
-            bluetoothSettingsData[indexPath.section].options[indexPath.row].detailTextLabel = "Подключено"
-            bluetoothOnSettingsData[indexPath.section].options[indexPath.row].detailTextLabel = "Подключено"
+            BluetothSettingsViewController.bluetoothSettingsData[indexPath.section].options[indexPath.row].detailTextLabel = "Подключено"
+            BluetothSettingsViewController.bluetoothOnSettingsData[indexPath.section].options[indexPath.row].detailTextLabel = "Подключено"
             bluetoothTableView.reloadData()
         }
     }
