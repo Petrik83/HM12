@@ -12,7 +12,7 @@ import UIKit
 class WiFiSettingsViewController: UIViewController {
     static var wiFiSettingsData = Section.getWiFiData()
     static let wiFiOnSettingsData = Section.getWiFiOnData()
-
+    
     
     let wiFiSwitch = UISwitch()
     
@@ -76,11 +76,15 @@ extension WiFiSettingsViewController: UITableViewDataSource {
         case .switchCell:
             let wiFiSwitch = UISwitch()
             wiFiSwitch.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
-            if settingModel[1].options[1].detailTextLabel == "Выкл." {
-                wiFiSwitch.setOn(false, animated: true)
-            } else {
-                wiFiSwitch.setOn(true, animated: true)
+            
+            if let wiFiSwitchPosition = settingModel[1].options[1].detailTextLabel {
+                if wiFiSwitchPosition == "Выкл." {
+                    wiFiSwitch.setOn(false, animated: true)
+                } else {
+                    wiFiSwitch.setOn(true, animated: true)
+                }
             }
+            
             cell.accessoryView = wiFiSwitch
             cell.selectionStyle = .none
         case .detailButton:
@@ -91,7 +95,7 @@ extension WiFiSettingsViewController: UITableViewDataSource {
             cell.imageView?.image = UIImage(named: "check")
             cell.accessoryType = .detailButton
         }
-       
+        
         cell.textLabel?.text = WiFiSettingsViewController.wiFiSettingsData[indexPath.section].options[indexPath.row].title
         return cell
     }
@@ -107,12 +111,16 @@ extension WiFiSettingsViewController: UITableViewDataSource {
         
         if sender.isOn {
             WiFiSettingsViewController.wiFiSettingsData = WiFiSettingsViewController.wiFiOnSettingsData
-            settingModel[1].options[1].detailTextLabel = "Вкл."
+            if settingModel[safe: 1]?.options[safe: 1]?.detailTextLabel != nil {
+                settingModel[1].options[1].detailTextLabel = "Вкл."
+            }
             wiFitableView.reloadData()
             wiFiSwitch.setOn(true, animated: true)
         } else {
             WiFiSettingsViewController.wiFiSettingsData = Section.getWiFiData()
-            settingModel[1].options[1].detailTextLabel = "Выкл."
+            if settingModel[safe: 1]?.options[safe: 1]?.detailTextLabel != nil {
+                settingModel[1].options[1].detailTextLabel = "Выкл."
+            }
             wiFiSwitch.setOn(false, animated: true)
             wiFitableView.reloadData()
         }
@@ -126,6 +134,11 @@ extension WiFiSettingsViewController: UITableViewDelegate {
             break
         default:
             let temp = WiFiSettingsViewController.wiFiSettingsData[indexPath.section].options[indexPath.row]
+            
+            guard WiFiSettingsViewController.wiFiSettingsData[safe: 0]?.options.count != nil else { break }
+            guard settingModel[safe: 1]?.options[safe: 1]?.detailTextLabel != nil else { break }
+            guard WiFiSettingsViewController.wiFiSettingsData[safe: 1]?.options != nil else { break }
+            
             if WiFiSettingsViewController.wiFiSettingsData[0].options.count == 1 {
                 WiFiSettingsViewController.wiFiSettingsData[indexPath.section].options.remove(at: indexPath.row)
                 WiFiSettingsViewController.wiFiSettingsData[0].options.append(temp)
@@ -142,6 +155,8 @@ extension WiFiSettingsViewController: UITableViewDelegate {
                     settingModel[1].options[1].detailTextLabel = temp.title
                 }
             }
+            
+            
         }
     }
 }
