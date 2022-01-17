@@ -7,12 +7,12 @@
 
 import UIKit
 
-let idCell = "TableViewSell"
-var switchPosition = false
-
 class ViewController: UIViewController {
     
-    lazy var tableView: UITableView = {
+    static let idCell = "TableViewSell"
+    var switchPosition = false
+    
+    private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.backgroundColor = .systemGray6
         tableView.dataSource = self
@@ -32,12 +32,17 @@ class ViewController: UIViewController {
         search.searchResultsUpdater = self
         self.navigationItem.searchController = search
         
-        if settingModel[1].options[2].detailTextLabel == "Вкл." {
-            bluetoothSettingsData = bluetoothOnSettingsData
+        
+        if let bluetoothSwitch = settingModel[safe: 1]?.options[safe: 2]?.detailTextLabel {
+            if bluetoothSwitch == "Вкл." {
+            BluetothSettingsViewController.bluetoothSettingsData = BluetothSettingsViewController.bluetoothOnSettingsData
+            }
         }
         
-        if settingModel[1].options[1].detailTextLabel == "Вкл." {
-            wiFiSettingsData = wiFiOnSettingsData
+        if let wiFiSwitch = settingModel[safe: 1]?.options[safe: 1]?.detailTextLabel {
+            if wiFiSwitch  == "Вкл." {
+                WiFiSettingsViewController.wiFiSettingsData = WiFiSettingsViewController.wiFiOnSettingsData
+            }
         }
     }
     
@@ -61,7 +66,7 @@ class ViewController: UIViewController {
 
 class TableViewSell: UITableViewCell {
     override var reuseIdentifier: String? {
-        return idCell
+        return ViewController.idCell
     }
 }
 
@@ -77,10 +82,10 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
-        var cell = tableView.dequeueReusableCell(withIdentifier: idCell)
+        var cell = tableView.dequeueReusableCell(withIdentifier: ViewController.idCell)
         
         if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: idCell)
+            cell = UITableViewCell(style: .default, reuseIdentifier: ViewController.idCell)
         }
         
         cell = setCellStyle(style: settingModel[indexPath.section].options[indexPath.row].style)
@@ -103,7 +108,7 @@ extension ViewController: UITableViewDataSource {
         cell?.imageView?.image = settingModel[indexPath.section].options[indexPath.row].icon
         cell?.textLabel?.text = settingModel[indexPath.section].options[indexPath.row].title
         cell?.detailTextLabel?.text = settingModel[indexPath.section].options[indexPath.row].detailTextLabel
-        return cell!
+        return cell ?? UITableViewCell()
     }
     
     @objc func switchChanged(_ sender : UISwitch!){
