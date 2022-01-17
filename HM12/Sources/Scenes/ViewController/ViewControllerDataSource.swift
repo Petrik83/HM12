@@ -50,21 +50,21 @@ extension ViewController: UITableViewDataSource {
     
     @objc func switchChanged(_ sender : UISwitch!){
         
-//        if sender.isOn {
-//            tableView.cellForRow(at: IndexPath(row: 1, section: 1))?.detailTextLabel?.text = "Выкл."
-//            tableView.cellForRow(at: IndexPath(row: 2, section: 1))?.detailTextLabel?.text = "Выкл."
-//            tableView.cellForRow(at: IndexPath(row: 3, section: 1))?.detailTextLabel?.text = "Авиарежим"
-//            tableView.cellForRow(at: IndexPath(row: 4, section: 1))?.detailTextLabel?.text = "Выкл."
-//            tableView.cellForRow(at: IndexPath(row: 5, section: 1))?.detailTextLabel?.text = "Не подключено"
-//            switchPosition = true
-//        } else {
-//            tableView.cellForRow(at: IndexPath(row: 1, section: 1))?.detailTextLabel?.text = settingModel[1].options[1].detailTextLabel
-//            tableView.cellForRow(at: IndexPath(row: 2, section: 1))?.detailTextLabel?.text = settingModel[1].options[2].detailTextLabel
-//            tableView.cellForRow(at: IndexPath(row: 3, section: 1))?.detailTextLabel?.text = settingModel[1].options[3].detailTextLabel
-//            tableView.cellForRow(at: IndexPath(row: 4, section: 1))?.detailTextLabel?.text = settingModel[1].options[4].detailTextLabel
-//            tableView.cellForRow(at: IndexPath(row: 5, section: 1))?.detailTextLabel?.text =  settingModel[1].options[5].detailTextLabel
-//            switchPosition = false
-//        }
+        if sender.isOn {
+            tableView.cellForRow(at: IndexPath(row: 1, section: 1))?.detailTextLabel?.text = "Выкл."
+            tableView.cellForRow(at: IndexPath(row: 2, section: 1))?.detailTextLabel?.text = "Выкл."
+            tableView.cellForRow(at: IndexPath(row: 3, section: 1))?.detailTextLabel?.text = "Авиарежим"
+            tableView.cellForRow(at: IndexPath(row: 4, section: 1))?.detailTextLabel?.text = "Выкл."
+            tableView.cellForRow(at: IndexPath(row: 5, section: 1))?.detailTextLabel?.text = "Не подключено"
+            switchPosition = true
+        } else {
+            tableView.cellForRow(at: IndexPath(row: 1, section: 1))?.detailTextLabel?.text = settingModel[1].options[1].detailTextLabel
+            tableView.cellForRow(at: IndexPath(row: 2, section: 1))?.detailTextLabel?.text = settingModel[1].options[2].detailTextLabel
+            tableView.cellForRow(at: IndexPath(row: 3, section: 1))?.detailTextLabel?.text = settingModel[1].options[3].detailTextLabel
+            tableView.cellForRow(at: IndexPath(row: 4, section: 1))?.detailTextLabel?.text = settingModel[1].options[4].detailTextLabel
+            tableView.cellForRow(at: IndexPath(row: 5, section: 1))?.detailTextLabel?.text =  settingModel[1].options[5].detailTextLabel
+            switchPosition = false
+        }
     }
 }
 

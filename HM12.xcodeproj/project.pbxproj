@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		3936A1912795612400B7FEC4 /* ViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3936A1902795612400B7FEC4 /* ViewControllerDataSource.swift */; };
+		395772CE2795752D00AE5033 /* ViewControllerDelegat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395772CD2795752D00AE5033 /* ViewControllerDelegat.swift */; };
+		395772D02795781700AE5033 /* WiFiSettingsViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395772CF2795781700AE5033 /* WiFiSettingsViewControllerDataSource.swift */; };
+		395772D22795783400AE5033 /* WiFiSettingsViewControllerDelegat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395772D12795783400AE5033 /* WiFiSettingsViewControllerDelegat.swift */; };
+		395772D42795789400AE5033 /* BluetothSettingsViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395772D32795789400AE5033 /* BluetothSettingsViewControllerDataSource.swift */; };
+		395772D6279578A700AE5033 /* BluetothSettingsViewControllerDelegat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395772D5279578A700AE5033 /* BluetothSettingsViewControllerDelegat.swift */; };
+		395772D82795797100AE5033 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395772D72795797100AE5033 /* TableViewCell.swift */; };
 		6D25E13B276A14160091A5D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D25E13A276A14160091A5D9 /* AppDelegate.swift */; };
 		6D25E13D276A14160091A5D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D25E13C276A14160091A5D9 /* SceneDelegate.swift */; };
 		6D25E13F276A14160091A5D9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D25E13E276A14160091A5D9 /* ViewController.swift */; };
@@ -26,6 +32,12 @@
 
 /* Begin PBXFileReference section */
 		3936A1902795612400B7FEC4 /* ViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerDataSource.swift; sourceTree = "<group>"; };
+		395772CD2795752D00AE5033 /* ViewControllerDelegat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerDelegat.swift; sourceTree = "<group>"; };
+		395772CF2795781700AE5033 /* WiFiSettingsViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiSettingsViewControllerDataSource.swift; sourceTree = "<group>"; };
+		395772D12795783400AE5033 /* WiFiSettingsViewControllerDelegat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiSettingsViewControllerDelegat.swift; sourceTree = "<group>"; };
+		395772D32795789400AE5033 /* BluetothSettingsViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetothSettingsViewControllerDataSource.swift; sourceTree = "<group>"; };
+		395772D5279578A700AE5033 /* BluetothSettingsViewControllerDelegat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetothSettingsViewControllerDelegat.swift; sourceTree = "<group>"; };
+		395772D72795797100AE5033 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		6D25E137276A14160091A5D9 /* HM12.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HM12.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D25E13A276A14160091A5D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D25E13C276A14160091A5D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +72,7 @@
 			children = (
 				6D25E13E276A14160091A5D9 /* ViewController.swift */,
 				3936A1902795612400B7FEC4 /* ViewControllerDataSource.swift */,
+				395772CD2795752D00AE5033 /* ViewControllerDelegat.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -68,6 +81,8 @@
 			isa = PBXGroup;
 			children = (
 				6D25E14E276A37960091A5D9 /* WiFiSettingsViewController.swift */,
+				395772CF2795781700AE5033 /* WiFiSettingsViewControllerDataSource.swift */,
+				395772D12795783400AE5033 /* WiFiSettingsViewControllerDelegat.swift */,
 			);
 			path = WiFiSettingsViewController;
 			sourceTree = "<group>";
@@ -76,6 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				6D25E152276A46D50091A5D9 /* BluetothSettingsViewController.swift */,
+				395772D32795789400AE5033 /* BluetothSettingsViewControllerDataSource.swift */,
+				395772D5279578A700AE5033 /* BluetothSettingsViewControllerDelegat.swift */,
 			);
 			path = BluetothSettingsViewController;
 			sourceTree = "<group>";
@@ -99,20 +116,20 @@
 		6D25E139276A14160091A5D9 /* HM12 */ = {
 			isa = PBXGroup;
 			children = (
-				6DF8A0C6277A3188005236C5 /* Resurses */,
-				6DF8A0CA277A34EC005236C5 /* Sourses */,
+				6DF8A0C6277A3188005236C5 /* Resources */,
+				6DF8A0CA277A34EC005236C5 /* Sources */,
 			);
 			path = HM12;
 			sourceTree = "<group>";
 		};
-		6DF8A0C6277A3188005236C5 /* Resurses */ = {
+		6DF8A0C6277A3188005236C5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				6DF8A0C7277A319B005236C5 /* Configs */,
 				6DF8A0C8277A31A9005236C5 /* Storyboards */,
 				6D25E143276A14160091A5D9 /* Assets.xcassets */,
 			);
-			path = Resurses;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		6DF8A0C7277A319B005236C5 /* Configs */ = {
@@ -132,14 +149,14 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		6DF8A0CA277A34EC005236C5 /* Sourses */ = {
+		6DF8A0CA277A34EC005236C5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				6DF8A0CC277A351A005236C5 /* App */,
 				6DF8A0CB277A3508005236C5 /* Scenes */,
 				6DF8A0CD277A3594005236C5 /* Models */,
 			);
-			path = Sourses;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		6DF8A0CB277A3508005236C5 /* Scenes */ = {
@@ -148,6 +165,7 @@
 				3936A18D2795608600B7FEC4 /* ViewController */,
 				3936A18E2795609C00B7FEC4 /* WiFiSettingsViewController */,
 				3936A18F279560AA00B7FEC4 /* BluetothSettingsViewController */,
+				395772D72795797100AE5033 /* TableViewCell.swift */,
 				6DF8A0D6277C181D005236C5 /* SetCellStyle.swift */,
 				6D6E20E42794A07A0067DC2F /* CollectionExtension.swift */,
 			);
@@ -248,11 +266,17 @@
 				6D6E20E52794A07A0067DC2F /* CollectionExtension.swift in Sources */,
 				6D25E14F276A37960091A5D9 /* WiFiSettingsViewController.swift in Sources */,
 				6D25E153276A46D50091A5D9 /* BluetothSettingsViewController.swift in Sources */,
+				395772D82795797100AE5033 /* TableViewCell.swift in Sources */,
 				6DF8A0CF277A364D005236C5 /* SettingSellModel.swift in Sources */,
 				6D25E13F276A14160091A5D9 /* ViewController.swift in Sources */,
 				6DF8A0D2277A40F9005236C5 /* WiFiSettingsCellModel.swift in Sources */,
+				395772CE2795752D00AE5033 /* ViewControllerDelegat.swift in Sources */,
+				395772D02795781700AE5033 /* WiFiSettingsViewControllerDataSource.swift in Sources */,
 				6D6E20E327948BA00067DC2F /* SellModel.swift in Sources */,
+				395772D6279578A700AE5033 /* BluetothSettingsViewControllerDelegat.swift in Sources */,
+				395772D22795783400AE5033 /* WiFiSettingsViewControllerDelegat.swift in Sources */,
 				6D25E13B276A14160091A5D9 /* AppDelegate.swift in Sources */,
+				395772D42795789400AE5033 /* BluetothSettingsViewControllerDataSource.swift in Sources */,
 				6DF8A0D7277C181D005236C5 /* SetCellStyle.swift in Sources */,
 				6DF8A0D5277A4151005236C5 /* BluetoothSettingsCellModel.swift in Sources */,
 				6D25E13D276A14160091A5D9 /* SceneDelegate.swift in Sources */,
@@ -407,7 +431,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZB4T6SD8SN;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HM12/Resurses/Configs/Info.plist;
+				INFOPLIST_FILE = HM12/Resources/Configs/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -435,7 +459,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZB4T6SD8SN;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HM12/Resurses/Configs/Info.plist;
+				INFOPLIST_FILE = HM12/Resources/Configs/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

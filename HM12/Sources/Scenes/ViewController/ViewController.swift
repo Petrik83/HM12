@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     static let idCell = "TableViewSell"
     var switchPosition = false
     
-    private lazy var tableView: UITableView = {
+    lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.backgroundColor = .systemGray6
         tableView.dataSource = self
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         
         if let bluetoothSwitch = settingModel[safe: 1]?.options[safe: 2]?.detailTextLabel {
             if bluetoothSwitch == "Вкл." {
-            BluetothSettingsViewController.bluetoothSettingsData = BluetothSettingsViewController.bluetoothOnSettingsData
+                BluetothSettingsViewController.bluetoothSettingsData = BluetothSettingsViewController.bluetoothOnSettingsData
             }
         }
         
@@ -61,28 +61,6 @@ class ViewController: UIViewController {
         tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-    }
-}
-
-class TableViewSell: UITableViewCell {
-    override var reuseIdentifier: String? {
-        return ViewController.idCell
-    }
-}
-
-
-
-extension ViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch [indexPath.section, indexPath.row] {
-        case [1, 1]:
-            navigationController?.pushViewController(WiFiSettingsViewController(), animated: true)
-        case [1, 2]:
-            navigationController?.pushViewController(BluetothSettingsViewController(), animated: true)
-        default:
-            print("Нажата клавиша \(settingModel[indexPath.section].options[indexPath.row].title)")
-        }
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
